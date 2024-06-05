@@ -1,0 +1,40 @@
+﻿<Window x:Class="CarRental.wAddClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRental"
+        mc:Ignorable="d"
+        Title="Добавление клиента" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Style="{StaticResource Back}">
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Margin="25" FontSize="24" Text="Добавление клиента"/>
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                <WrapPanel Orientation="Horizontal">
+                    <Label Width="170" Content="ФИО клиента"/>
+                    <TextBox x:Name="FIO" MaxLength="150"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Width="170" Content="Дата рождения"/>
+                    <DatePicker x:Name="DateOfBirth" SelectedDateFormat="Short" />
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Width="170" Content="Телефон"/>
+                    <TextBox x:Name="Phone" MaxLength="150"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Width="170" Content="Паспортные данные"/>
+                    <TextBox x:Name="Passport" Height="50" TextWrapping="WrapWithOverflow"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Width="170" Content="Адрес"/>
+                    <TextBox x:Name="Address" Height="80" TextWrapping="WrapWithOverflow"/>
+                </WrapPanel>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button Content="Сохранить" Click="Ok_Click"/>
+                <Button Content="Отменить" IsCancel="True"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,153 @@
+﻿<Window x:Class="CarRental.wRental"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRental"
+        mc:Ignorable="d"
+        Title="Оформление проката" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Style="{StaticResource Back}">
+        <Grid x:Name="ChooseCar" Visibility="Visible">
+            <StackPanel x:Name="cars">
+                <TextBlock Text="Выберите автомобиль для аренды" Margin="25" FontSize="24"/>
+                <WrapPanel>
+                    <Button x:Name="Cancel" Content="Отменить" Margin="70 0" IsCancel="True"/>
+                    <TextBox x:Name="TbSearch" Margin="20 5" Height="27" TextChanged="TbSearch_TextChanged"/>
+                    <ComboBox Name="CbSort" Margin="10" IsEditable="True" Text="Сортировка" SelectionChanged="cbSort_SelectionChanged"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <ListView x:Name="DgCars" MaxHeight="280" Margin="5" d:ItemsSource="{d:SampleData ItemCount=15}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="160" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Image Source="{Binding Path=Image}" Width="150" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Vertical">
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding CarBrands.BrandName}" FontSize="14"/>
+                                                </WrapPanel>
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Регистрационный номер: " FontSize="12"></TextBlock>
+                                                    <TextBlock Text="{Binding RegistrationNumber}" FontSize="12"></TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Номер двигателя: " FontSize="10"></TextBlock>
+                                                    <TextBlock Text="{Binding EngineNumber}" FontSize="10"></TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Номер кузова: " FontSize="10"></TextBlock>
+                                                    <TextBlock Text="{Binding BodyNumber}" FontSize="10"></TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Год выпуска: " FontSize="12"></TextBlock>
+                                                    <TextBlock Text="{Binding YearOfIssue}" FontSize="12"></TextBlock>
+                                                </WrapPanel>
+                                                <TextBlock Text="_________________________________"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="140">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Vertical">
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Цена автомобиля: " FontSize="12"></TextBlock>
+                                                    <TextBlock Text="{Binding CarPrice}" FontSize="12"></TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Цена за день: " FontSize="12"></TextBlock>
+                                                    <TextBlock Text="{Binding RentalDayPrice}" FontSize="12"></TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Дата последнего ТО: " FontSize="12"></TextBlock>
+                                                    <TextBlock Text="{Binding DateOfLastMaintenance, StringFormat=dd.MM.yyyy}" FontSize="12"></TextBlock>
+                                                </WrapPanel>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="130" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="btnGet" Content="Взять в прокат" Width="auto" Click="Get_Click"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+        
+        <Grid x:Name="RentalInfo" Visibility="Hidden">
+            <StackPanel x:Name="rental" HorizontalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Margin="25" FontSize="24">Оформление проката</TextBlock>
+                <WrapPanel Orientation="Horizontal">
+                    <WrapPanel Orientation="Vertical" Margin="10">
+                        <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Label Width="170" Content="Марка"/>
+                            <TextBlock Name="chosenCar" Text="{Binding CarBrands.BrandName}"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Width="170" Content="Дата выдачи"/>
+                            <DatePicker x:Name="DpDateOfIssue" SelectedDateFormat="Short" />
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Width="170" Content="Дата возврата"/>
+                            <DatePicker x:Name="DpReturnDate" SelectedDateFormat="Short" />
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Width="170" Content="Клиент"/>
+                            <ComboBox Name="CbClient" SelectedValue="Clients" DisplayMemberPath="FIO" SelectedIndex="0" IsEditable="True"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Width="170" Content="Сотрудник"/>
+                            <TextBlock Name="tbEmployee" Text="{Binding Employees.FIO}" />
+                        </WrapPanel>
+                    </WrapPanel>
+
+                    <WrapPanel Orientation="Vertical" Margin="15">
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Width="150" Content="Детское кресло"/>
+                            <CheckBox x:Name="Service1"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Width="150" Content="Личный водитель"/>
+                            <CheckBox x:Name="Service2"/>
+                        </WrapPanel>
+                        <WrapPanel Orientation="Horizontal">
+                            <Label Width="150" Content="Доставка машины"/>
+                            <CheckBox x:Name="Service3"/>
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Label Width="150" Content="Срок проката в днях"/>
+                            <Label Name="Period"/>
+                            <!--<TextBlock x:Name="tbPeriod" Text="{Binding Rental_period}"/>-->
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Label Width="150" Content="Стоимость проката"/>
+                            <Label Width="50" Name="Counted" Content=""/>
+                            <!--<TextBlock x:Name="tbCost" Text="{Binding Rental_cost}"/>-->
+                        </WrapPanel>
+                    </WrapPanel>
+                </WrapPanel>
+                <Button Name="Count" Content="Рассчитать стоимость поездки" Height="30" Width="210" Margin="25" Click="Count_Click"/>
+                <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button x:Name="Ok" Content="Ok" Click="Ok_Click"/>
+                    <Button x:Name="btnBack" Content="Назад" Click="Back_Click"/>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,71 @@
+﻿<Window x:Class="CarRental.wEditRental"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRental"
+        mc:Ignorable="d"
+        Title="Редактирование проката" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Style="{StaticResource Back}">
+        <WrapPanel HorizontalAlignment="Center" Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center" Margin="25" FontSize="24">Редактирование проката</TextBlock>
+            <WrapPanel Orientation="Horizontal">
+                <WrapPanel Orientation="Vertical" Margin="10">
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="170" Content="Регистрационный номер"/>
+                        <TextBlock Name="chosenCar" Text="{Binding CarBrands.BrandName}"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Дата выдачи"/>
+                        <DatePicker x:Name="DpDateOfIssue"  SelectedDate="{Binding DateOfIssue}" SelectedDateFormat="Short" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Дата возврата"/>
+                        <DatePicker x:Name="DpReturnDate" SelectedDate="{Binding ReturnDate}" SelectedDateFormat="Short" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Клиент"/>
+                        <ComboBox Name="CbClient" SelectedItem="{Binding Clients.FIO}" DisplayMemberPath="FIO"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Сотрудник"/>
+                        <TextBlock Name="tbEmployee" Text="{Binding Employees.FIO}" />
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="170" Content="Внесенная сумма"/>
+                        <TextBox x:Name="Payment_stamp" Text="{Binding PaymentStamp}"/>
+                    </WrapPanel>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Vertical" Margin="15">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Детское кресло"/>
+                        <CheckBox x:Name="Service1" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Личный водитель"/>
+                        <CheckBox x:Name="Service2"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Доставка машины"/>
+                        <CheckBox x:Name="Service3"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="150" Content="Срок проката в днях"/>
+                        <Label Name="Period"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="150" Content="Стоимость проката"/>
+                        <Label Width="50" Name="Counted"/>
+                    </WrapPanel>
+                </WrapPanel>
+            </WrapPanel>
+            <Button Name="Count" Content="Рассчитать стоимость поездки" Height="30" Width="210" Margin="15" Click="Count_Click"/>
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="Ok" Content="Ok" Click="Ok_Click"/>
+                <Button x:Name="Delete" Content="Удалить" Click="Delete_Click"/>
+                <Button x:Name="Cancel" Content="Отмена" IsCancel="True"/>
+            </WrapPanel>
+        </WrapPanel>
+    </Grid>
+</Window>

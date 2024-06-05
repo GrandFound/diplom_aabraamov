@@ -1,0 +1,83 @@
+﻿<Window x:Class="CarRental.wAddCar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRental"
+        mc:Ignorable="d"
+        Title="Добавление автомобиля" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Style="{StaticResource Back}">
+        <WrapPanel HorizontalAlignment="Center" Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center" Margin="25" FontSize="24">Добавление автомобиля</TextBlock>
+            <WrapPanel Orientation="Horizontal">
+                <WrapPanel Orientation="Vertical" Margin="20">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Марка машины"/>
+                        <ComboBox Name="CbCarBrand">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <Run Text="{Binding BrandName}"/>
+                                        <Run Text=" "/>
+                                        <Run Text="{Binding Specifications}"/>
+                                        <Run Text=" "/>
+                                        <Run Text="{Binding Class}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="170" Content="Регистрационный номер"/>
+                        <TextBox x:Name="RegistrationNumber"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="170" Content="Номер кузова"/>
+                        <TextBox x:Name="BodyNumber"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="170" Content="Номер двигателя"/>
+                        <TextBox x:Name="EngineNumber"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Label Width="170" Content="Фото автомобиля"/>
+                        <Button x:Name="addPhotoButton" Content="Выбрать" Click="AddPhoto_Click"/>
+                    </WrapPanel>
+                </WrapPanel>
+
+                <WrapPanel Orientation="Vertical">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Год выпуска"/>
+                        <TextBox x:Name="YearOfIssue"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Цена автомобиля"/>
+                        <TextBox x:Name="CarPrice"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Цена за день"/>
+                        <TextBox x:Name="RentalDayPrice"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Дата последнего ТО"/>
+                        <!--<TextBox x:Name="DateOfLastMaintenance" ToolTip="Ввод в формате dd.mm.hhhh" Text="{Binding DateOfLastMaintenance, Mode=TwoWay, StringFormat=dd.MM.yyyy}"/>-->
+                        <DatePicker x:Name="DateOfLastMaintenance" SelectedDateFormat="Short" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Сотрудник"/>
+                        <ComboBox Name="CbEmployee" SelectedValue="Employees" DisplayMemberPath="FIO"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="150" Content="Возвращен"/>
+                        <CheckBox x:Name="ReturnMark" IsEnabled="False" IsChecked="True"/>
+                    </WrapPanel>
+                </WrapPanel>
+            </WrapPanel>
+
+            <WrapPanel HorizontalAlignment="Center" Margin="35" Orientation="Horizontal">
+                <Button x:Name="Ok" Content="Ok" Click="Ok_Click"/>
+                <Button x:Name="Cancel" Content="Отмена" IsCancel="True"/>
+            </WrapPanel>
+        </WrapPanel>
+    </Grid>
+</Window>

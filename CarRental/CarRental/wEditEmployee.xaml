@@ -1,0 +1,59 @@
+﻿<Window x:Class="CarRental.wEditEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRental"
+        mc:Ignorable="d"
+        Title="Редактирование данных сотрудника" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Style="{StaticResource Back}">
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Margin="25" FontSize="24" Text="Редактирование личных данных"/>
+            <WrapPanel HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="ФИО сотрудника"/>
+                        <TextBox x:Name="FIO" MaxLength="150" Text="{Binding FIO}"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Дата рождения"/>
+                        <DatePicker x:Name="DateOfBirth" SelectedDateFormat="Short" SelectedDate="{Binding DateOfBirth}"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Паспортные данные"/>
+                        <TextBox x:Name="Passport" Height="50" MaxLength="150" Text="{Binding PassportDetails}" TextWrapping="WrapWithOverflow"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="170" Content="Адрес"/>
+                        <TextBox x:Name="Address" Height="100" MaxLength="280" Text="{Binding Address}" TextWrapping="WrapWithOverflow"/>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Должность"/>
+                        <ComboBox Name="CbPositions" SelectedItem="Positions" DisplayMemberPath="Position_name"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Margin="0 10">
+                        <Label Width="100" Content="Пол"/>
+                        <StackPanel x:Name="gender">
+                            <RadioButton x:Name="Male" GroupName="Gender" Content="М"/>
+                            <RadioButton x:Name="Female" GroupName="Gender" Content="Ж"/>
+                        </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Логин"/>
+                        <TextBox Name="tbLogin" Text="{Binding Users.Login}" MaxLength="30"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Пароль"/>
+                        <TextBox Name="tbPassword" Text="{Binding Users.Password}" MaxLength="30"/>
+                    </WrapPanel>
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button Content="Сохранить" Click="Save_Click"/>
+                <Button Content="Отменить" IsCancel="True"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>
